@@ -24,6 +24,7 @@ A simple 2048 game built using HTML, CSS, and JavaScript.
 
 ## 🔹 Live Demo
 
-[Play Here](https://yourusername.github.io/repository-name/)
+[Play Here](https://ankurbansal2712.github.io/)
 
 ## 🔹 License
+
