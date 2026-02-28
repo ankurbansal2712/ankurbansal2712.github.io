@@ -2,6 +2,7 @@ body {
     font-family: Arial;
     text-align: center;
     background: #faf8ef;
+	touch-action: none;
 }
 
 hr {
@@ -150,4 +151,5 @@ button {
     color: white;
     border: none;
     padding: 10px 20px;
+
 }
