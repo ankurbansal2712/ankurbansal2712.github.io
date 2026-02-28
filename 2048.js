@@ -66,7 +66,7 @@ function updateTile(tile, num){
 }
 
 function triggerMove(direction){
- if (e.repeat || moveLock || isPaused) return;
+ if (moveLock || isPaused) return;
 
   moveLock = true;
 
@@ -385,4 +385,5 @@ function updateGameUI(){
 	renderScore();
 	renderHighestTile();
 }
+
 
