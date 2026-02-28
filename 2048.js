@@ -72,10 +72,10 @@ function triggerMove(direction){
 
   let oldBoard = JSON.stringify(board);
 
-  if(direction=="ArrowLeft") slideLeft();
-  else if(direction=="ArrowRight") slideRight();
-  else if(direction=="ArrowUp") slideUp();
-  else if(direction=="ArrowDown") slideDown();
+  if(direction=="Left") slideLeft();
+  else if(direction=="Right") slideRight();
+  else if(direction=="Up") slideUp();
+  else if(direction=="Down") slideDown();
 
   renderBoard();
 
@@ -385,5 +385,6 @@ function updateGameUI(){
 	renderScore();
 	renderHighestTile();
 }
+
 
 
