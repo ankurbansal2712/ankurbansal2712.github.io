@@ -355,11 +355,13 @@ function togglePause(){
 		document.getElementById("pauseButton").innerText = "Resume";
 	}
 	else {
-		isPaused = false; 
-		startTimer();
-		document.body.classList.remove("paused");
-		document.getElementById("pauseButton").innerText = "Pause";
-	}
+    isPaused = false; 
+    if(timerStarted){
+        startTimer();
+    }
+    document.body.classList.remove("paused");
+    document.getElementById("pauseButton").innerText = "Pause";
+}
 }	
 
 function HighestTile(){
@@ -384,6 +386,7 @@ function updateGameUI(){
 	renderScore();
 	renderHighestTile();
 }
+
 
 
 
