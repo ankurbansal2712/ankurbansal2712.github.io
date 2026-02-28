@@ -72,10 +72,10 @@ function triggerMove(direction){
 
   let oldBoard = JSON.stringify(board);
 
-  if(direction=="Left") slideLeft();
-  else if(direction=="Right") slideRight();
-  else if(direction=="Up") slideUp();
-  else if(direction=="Down") slideDown();
+  if(direction=="left") slideLeft();
+  else if(direction=="right") slideRight();
+  else if(direction=="up") slideUp();
+  else if(direction=="down") slideDown();
 
   renderBoard();
 
@@ -213,9 +213,8 @@ function transposeBoard(board) {
     for (let r = 0; r < rows; r++) {
       newBoard[c][r] = board[r][c];
     }
-  }
-  board = newBoard; 
-  return board;
+  } 
+  return newboard;
 }
 
 function reverseBoard(board) {
@@ -385,6 +384,7 @@ function updateGameUI(){
 	renderScore();
 	renderHighestTile();
 }
+
 
 
 
