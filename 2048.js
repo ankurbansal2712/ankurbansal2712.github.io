@@ -214,7 +214,7 @@ function transposeBoard(board) {
       newBoard[c][r] = board[r][c];
     }
   } 
-  return newboard;
+  return newBoard;
 }
 
 function reverseBoard(board) {
@@ -384,6 +384,7 @@ function updateGameUI(){
 	renderScore();
 	renderHighestTile();
 }
+
 
 
 
