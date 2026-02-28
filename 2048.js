@@ -65,18 +65,17 @@ function updateTile(tile, num){
   }
 }
 
-document.addEventListener("keydown", (e)=>{
-
-  if (e.repeat || moveLock || isPaused) return;
+function triggerMove(direction){
+ if (e.repeat || moveLock || isPaused) return;
 
   moveLock = true;
 
   let oldBoard = JSON.stringify(board);
 
-  if(e.code=="ArrowLeft") slideLeft();
-  else if(e.code=="ArrowRight") slideRight();
-  else if(e.code=="ArrowUp") slideUp();
-  else if(e.code=="ArrowDown") slideDown();
+  if(direction=="ArrowLeft") slideLeft();
+  else if(direction=="ArrowRight") slideRight();
+  else if(direction=="ArrowUp") slideUp();
+  else if(direction=="ArrowDown") slideDown();
 
   renderBoard();
 
@@ -104,6 +103,14 @@ document.addEventListener("keydown", (e)=>{
   } else {
     moveLock = false;
   }
+}
+
+document.addEventListener("keydown", (e)=>{
+  if (e.repeat) return;
+  if(e.code=="ArrowLeft") triggerMove("left");
+  else if(e.code=="ArrowRight") triggerMove("right");
+  else if(e.code=="ArrowUp") triggerMove("up");
+  else if(e.code=="ArrowDown") triggerMove("down");
 });
 
 let startX, startY; 
@@ -126,18 +133,18 @@ function handleSwipe(){
 	let diffX = endX - startX;
 	let diffY = endY - startY;
 	
-	if(Math.abs(diffX)>Math.abs(diffY){
+	if(Math.abs(diffX)>Math.abs(diffY)){
 		if(diffX>30){
-			slideRight();
+			triggerMove("right");
 		}
 		else if (diffX<-30) {
-			slideLeft();
+			triggerMove("left");
 		}
 	} else {
 		if(diffY>30){
-			slideDown(); 
+			triggerMove("down"); 
 		} else if(diffY<-30) {
-			slideUp();
+			triggerMove("up");
 		}
 	}
 }
@@ -378,3 +385,4 @@ function updateGameUI(){
 	renderScore();
 	renderHighestTile();
 }
+
