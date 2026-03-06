@@ -65,17 +65,18 @@ function updateTile(tile, num){
   }
 }
 
-function triggerMove(direction){
- if (moveLock || isPaused) return;
+document.addEventListener("keydown", (e)=>{
+
+  if (e.repeat || moveLock || isPaused) return;
 
   moveLock = true;
 
   let oldBoard = JSON.stringify(board);
 
-  if(direction=="left") slideLeft();
-  else if(direction=="right") slideRight();
-  else if(direction=="up") slideUp();
-  else if(direction=="down") slideDown();
+  if(e.code=="ArrowLeft") slideLeft();
+  else if(e.code=="ArrowRight") slideRight();
+  else if(e.code=="ArrowUp") slideUp();
+  else if(e.code=="ArrowDown") slideDown();
 
   renderBoard();
 
@@ -103,14 +104,6 @@ function triggerMove(direction){
   } else {
     moveLock = false;
   }
-}
-
-document.addEventListener("keydown", (e)=>{
-  if (e.repeat) return;
-  if(e.code=="ArrowLeft") triggerMove("left");
-  else if(e.code=="ArrowRight") triggerMove("right");
-  else if(e.code=="ArrowUp") triggerMove("up");
-  else if(e.code=="ArrowDown") triggerMove("down");
 });
 
 let startX, startY; 
@@ -133,18 +126,18 @@ function handleSwipe(){
 	let diffX = endX - startX;
 	let diffY = endY - startY;
 	
-	if(Math.abs(diffX)>Math.abs(diffY)){
+	if(math.abs(diffX)>math.abs(diffY){
 		if(diffX>30){
-			triggerMove("right");
+			slideRight();
 		}
 		else if (diffX<-30) {
-			triggerMove("left");
+			slideLeft();
 		}
 	} else {
 		if(diffY>30){
-			triggerMove("down"); 
+			slideDown(); 
 		} else if(diffY<-30) {
-			triggerMove("up");
+			slideUp();
 		}
 	}
 }
@@ -187,37 +180,37 @@ function slideLeft(){
 }
 
 function slideRight(){
-  board = reverseBoard(board);
+  board = reverse(board);
   slideLeftCore(); 
-  board = reverseBoard(board);
+  board = reverse(board);
 }
 
 function slideUp(){
-  board = transposeBoard(board);             
+  board = transpose(board);             
   slideLeftCore();       
-  board = transposeBoard(board);    
+  board = transpose(board);    
 }
 
 function slideDown(){  
-  board = transposeBoard(board);
-  board = reverseBoard(board);
+  board = transpose(board);
+  board = reverse(board);
   slideLeftCore();
-  board = reverseBoard(board);
-  board = transposeBoard(board);
+  board = reverse(board);
+  board = transpose(board);
 }
 
-function transposeBoard(board) {
+function transpose(board) {
   let newBoard = [];
   for (let c = 0; c < columns; c++) {
     newBoard[c] = [];
     for (let r = 0; r < rows; r++) {
       newBoard[c][r] = board[r][c];
     }
-  } 
+  }
   return newBoard;
 }
 
-function reverseBoard(board) {
+function reverse(board) {
   return board.map(row => [...row].reverse());
 }
 
@@ -384,7 +377,3 @@ function updateGameUI(){
 	renderScore();
 	renderHighestTile();
 }
-
-
-
-
